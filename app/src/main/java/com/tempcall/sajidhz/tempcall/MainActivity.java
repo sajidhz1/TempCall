@@ -1,120 +1,82 @@
 package com.tempcall.sajidhz.tempcall;
 
 
-import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
+
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatEditText;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import com.tempcall.sajidhz.tempcall.dialogs.SaveUserContactDialog;
+
+import com.tempcall.sajidhz.tempcall.Fragments.CallFragment;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    AppCompatButton _callButton;
-    AppCompatEditText _telephoneNumber;
-
-    IntentFilter _intentFilter;
-    CallStateListener _callstateListener;
-
-    OutgoingCallReceiver _outgoingCallReceiver;
-
-    TelephonyManager _tm;
-    private static final int CALL_ACTIVITY_RESULT_CODE = 11000;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        _callstateListener = new CallStateListener();
-        _outgoingCallReceiver  =  new OutgoingCallReceiver();
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        _tm = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-        _tm.listen(_callstateListener, PhoneStateListener.LISTEN_CALL_STATE);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        _telephoneNumber =  (AppCompatEditText)findViewById(R.id.telephoneNumber);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        _intentFilter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
-        getApplicationContext().registerReceiver(_outgoingCallReceiver, _intentFilter);
-
-        _callButton  =  (AppCompatButton)findViewById(R.id.callButton);
-        _callButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View arg0) {
-              //  makeCall();
-
-                showContactSaveDialog();
-            }
-        });
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new CallFragment(), "ONE");
+//        adapter.addFragment(new TwoFragment(), "TWO");
+//        adapter.addFragment(new ThreeFragment(), "THREE");
+        viewPager.setAdapter(adapter);
+    }
 
-    public void showContactSaveDialog(){
-        FragmentManager manager = getSupportFragmentManager();
-        Fragment frag = manager.findFragmentByTag("fragment_edit_name");
-        if (frag != null) {
-            manager.beginTransaction().remove(frag).commit();
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
 
-        SaveUserContactDialog saveUserContactDialog = new SaveUserContactDialog();
-        saveUserContactDialog.show(manager, "fragment_edit_name");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //handle call state listener here
-        //tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
-        getApplicationContext().registerReceiver(_outgoingCallReceiver, _intentFilter);
-    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        getApplicationContext().unregisterReceiver(_outgoingCallReceiver);
-//    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        getApplicationContext().unregisterReceiver(_outgoingCallReceiver);
-        //handle call state listener here
-    }
-
-
-
-    private void makeCall() {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:"+_telephoneNumber.getText().toString()));
-
-        if (ActivityCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        startActivity(callIntent);
-    }
-
-    public class OutgoingCallReceiver extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d(OutgoingCallReceiver.class.getSimpleName(), intent.toString());
-            Toast.makeText(context, "Outgoing call catched!", Toast.LENGTH_LONG).show();
-            //TODO: Handle outgoing call event here
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
         }
     }
+
+
 }

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:gravity="center"
+        android:id="@+id/telephoneNumber"
+        android:layout_weight="@integer/dialpad_layout_weight_dialpad" />
+
+    <!--<TableLayout-->
+        <!--android:id="@+id/dialpad"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="@integer/dialpad_layout_weight_dialpad"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="@dimen/dialpad_vertical_margin"-->
+        <!--android:paddingLeft="5dip"-->
+        <!--android:paddingRight="5dip"-->
+        <!--android:layout_marginLeft="15dip"-->
+        <!--android:layout_marginRight="15dip"-->
+        <!--android:paddingBottom="10dip">-->
+        <!--<TableRow-->
+            <!--android:layout_height="0px"-->
+            <!--android:layout_weight="1">-->
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/one" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="1"-->
+                <!--android:contentDescription="@string/description_image_button_one" />-->
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/two" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="2"-->
+                <!--android:contentDescription="@string/description_image_button_two" />-->
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/three" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="3"-->
+                <!--android:contentDescription="@string/description_image_button_three" />-->
+        <!--</TableRow>-->
+        <!--<TableRow-->
+            <!--android:layout_height="0px"-->
+            <!--android:layout_weight="1">-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/four" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="4"-->
+                <!--android:contentDescription="@string/description_image_button_four" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/five" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="5"-->
+                <!--android:contentDescription="@string/description_image_button_five" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/six" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="6"-->
+                <!--android:contentDescription="@string/description_image_button_six" />-->
+        <!--</TableRow>-->
+        <!--<TableRow-->
+            <!--android:layout_height="0px"-->
+            <!--android:layout_weight="1">-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/seven" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="7"-->
+                <!--android:contentDescription="@string/description_image_button_seven" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/eight" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="8"-->
+                <!--android:contentDescription="@string/description_image_button_eight" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/nine" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="9"-->
+                <!--android:contentDescription="@string/description_image_button_nine" />-->
+        <!--</TableRow>-->
+        <!--<TableRow-->
+            <!--android:layout_height="0px"-->
+            <!--android:layout_weight="1">-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/star" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="*"-->
+                <!--android:contentDescription="@string/description_image_button_star" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/zero" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="0"-->
+                <!--android:contentDescription="@string/description_image_button_zero" />-->
+            <!--<com.tempcall.sajidhz.tempcall.DialpadImageButton-->
+                <!--android:id="@+id/pound" style="@style/DialtactsDialpadButtonStyle"-->
+                <!--android:text="#"-->
+                <!--android:contentDescription="@string/description_image_button_pound" />-->
+        <!--</TableRow>-->
+    <!--</TableLayout>-->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/dialpad_layout_weight_dialpad">
+
+        <Button
+            android:text="Button"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_style"
+            android:id="@+id/show_dialog"
+            android:layout_weight="1" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/callButton"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

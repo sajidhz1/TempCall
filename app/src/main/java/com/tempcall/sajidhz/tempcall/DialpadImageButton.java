@@ -2,7 +2,6 @@ package com.tempcall.sajidhz.tempcall;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.Button;
