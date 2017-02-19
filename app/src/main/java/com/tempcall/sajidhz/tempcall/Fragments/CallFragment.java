@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tempcall.sajidhz.tempcall.CallStateListener;
@@ -45,6 +48,7 @@ public class CallFragment extends Fragment {
     AppCompatEditText _telephoneNumber;
     FloatSeekBar ft ;
 
+    TextView tv;
     IntentFilter _intentFilter;
     CallStateListener _callstateListener;
 
@@ -67,13 +71,13 @@ public class CallFragment extends Fragment {
 
         _tm = (TelephonyManager) getActivity().getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
         _tm.listen(_callstateListener, PhoneStateListener.LISTEN_CALL_STATE);
-
-        _telephoneNumber =  (AppCompatEditText)getActivity().findViewById(R.id.telephoneNumber);
+//
+//        _telephoneNumber =  (AppCompatEditText)getActivity().findViewById(R.id.telephoneNumber);
 
         _intentFilter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
         getActivity().getApplicationContext().registerReceiver(_outgoingCallReceiver, _intentFilter);
 
-        _callButton  =  (AppCompatButton)getActivity().findViewById(R.id.callButton);
+//        _callButton  =  (AppCompatButton)getActivity().findViewById(R.id.callButton);
 //        _callButton.setOnClickListener(new View.OnClickListener() {
 //
 //            public void onClick(View arg0) {
@@ -91,7 +95,19 @@ public class CallFragment extends Fragment {
         View rootView  = inflater.inflate(R.layout.call_fragment, container, false);
 
         LinearLayout root = (LinearLayout) rootView.findViewById(R.id.root);
+        root.setOrientation(LinearLayout.VERTICAL);
+        tv = new TextView(getActivity().getApplicationContext());
+        tv.setText("test");
+        tv.setTextColor(Color.BLUE);
+
+
+        root.addView(tv);
+
         ft = new FloatSeekBar(getActivity().getApplicationContext());
+
+
+
+
         ft.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -105,9 +121,10 @@ public class CallFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
-                df.setMaximumFractionDigits(340);
 
+                Rect r  = ft.getThumb().getBounds();
+
+                tv.animate().x(r.left + r.width()).start();
                 Toast.makeText(getActivity().getApplicationContext() , ft.getValue()+"" , Toast.LENGTH_SHORT).show();
             }
         });

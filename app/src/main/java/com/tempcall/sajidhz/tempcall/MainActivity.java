@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 
 import com.tempcall.sajidhz.tempcall.Fragments.CallFragment;
+import com.tempcall.sajidhz.tempcall.Fragments.TestFragment;
 
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new CallFragment(), "ONE");
-//        adapter.addFragment(new TwoFragment(), "TWO");
+        adapter.addFragment(new TestFragment(), "TWO");
 //        adapter.addFragment(new ThreeFragment(), "THREE");
         viewPager.setAdapter(adapter);
     }

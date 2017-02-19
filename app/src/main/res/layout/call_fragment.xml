@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:id="@+id/root">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:gravity="center"
-        android:id="@+id/telephoneNumber"
-        android:layout_weight="@integer/dialpad_layout_weight_dialpad" />
+    <!--<android.support.v7.widget.AppCompatEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="phone"-->
+        <!--android:ems="10"-->
+        <!--android:gravity="center"-->
+        <!--android:id="@+id/telephoneNumber"-->
+        <!--android:layout_weight="@integer/dialpad_layout_weight_dialpad" />-->
 
     <!--<TableLayout-->
         <!--android:id="@+id/dialpad"-->
@@ -92,26 +92,26 @@
         <!--</TableRow>-->
     <!--</TableLayout>-->
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="@integer/dialpad_layout_weight_dialpad">
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="@integer/dialpad_layout_weight_dialpad">-->
 
-        <Button
-            android:text="Button"
-            android:layout_width="100dip"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_button_style"
-            android:id="@+id/show_dialog"
-            android:layout_weight="1" />
+        <!--<Button-->
+            <!--android:text="Button"-->
+            <!--android:layout_width="100dip"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/round_button_style"-->
+            <!--android:id="@+id/show_dialog"-->
+            <!--android:layout_weight="1" />-->
 
-        <android.support.v7.widget.AppCompatButton
-            android:text="Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/callButton"
-            android:layout_weight="1" />
-    </LinearLayout>
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:text="Button"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/callButton"-->
+            <!--android:layout_weight="1" />-->
+    <!--</LinearLayout>-->
 
 </LinearLayout>
